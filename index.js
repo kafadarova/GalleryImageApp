@@ -2,11 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const multer = require('multer');
 
 const { initDB } = require('./config/db');
 
-const upload = multer();
 // Routes
 const images = require('./routes/images');
 
@@ -18,9 +16,6 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 app.use(bodyParser.json());
-app.use(upload.array());
-
-
 
 (async () => {
   await initDB();
