@@ -10,11 +10,11 @@
     <div class="col-xl-4 col-md-6 d-inline-flex align-items-stretch carddiv" *ngFor="let image of images">
       <div class="card">
         <div class="card-body">
-          <img class="img-fluid" data-src="{{this.image.path}}" alt="{{this.image.description}}">
-          <span class="card-title">{{this.image.description}}</span>
-          <i class="rem-icon fa fa-edit" aria-hidden="true" data-toggle="modal" style="float: right;">
+          <img class="img-fluid" data-src="{{image.path}}" alt="{{image.description}}">
+          <span class="card-title">{{image.description}}</span>
+          <i class="rem-icon fa fa-edit" aria-hidden="true" style="float: right;">
           </i>
-          <i class="rem-icon fa fa-trash" aria-hidden="true" data-toggle="modal" style="float: right;">
+          <i class="rem-icon fa fa-trash" aria-hidden="true" (click)="onDeleteClick(image)" style="float: right;">
           </i>
         </div>
       </div>

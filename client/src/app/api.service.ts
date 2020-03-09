@@ -23,13 +23,13 @@ export class ApiService {
     const url = `${this.apiUrl}api/images`;
     const result = this.http.get(url);
     return result;
-
   }
-  // deleteImage(params) {
-  //   const headers = new Headers();
-  //   const url = this.apiUrl + 'images/deleteImage';
-  //   const result = this.http.post(url, params, {headers: headers})
-  //   .map(res => res.json());
-  //   return result;
-  // }
+
+  deleteImage(params) {
+    const url =`${this.apiUrl}api/images/${params}`;
+    const result = this.http.delete(url);
+    console.log(result);
+
+    return result;
+  }
 }

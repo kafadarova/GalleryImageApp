@@ -34,4 +34,11 @@ export class GalleryComponent implements OnInit {
      for (const img in this.images) {
      }
    }
+   
+   onDeleteClick(image){
+     const params = image.uid;
+     this.svcs.deleteImage(params).subscribe(() => {
+        this.loadImages();
+    });
+   }
 }
