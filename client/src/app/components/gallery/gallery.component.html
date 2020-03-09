@@ -1,0 +1,22 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="m-10 searchform">
+    <!-- Search form -->
+    <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by description" aria-label="Search">
+    </form>
+  </div>
+  <div class="row mx-auto">
+    <div class="col-xl-4 col-md-6 d-inline-flex align-items-stretch carddiv" *ngFor="let image of images">
+      <div class="card">
+        <div class="card-body">
+          <img class="img-fluid" data-src="{{this.image.path}}" alt="{{this.image.description}}">
+          <span class="card-title">{{this.image.description}}</span>
+          <i class="rem-icon fa fa-edit" aria-hidden="true" data-toggle="modal" style="float: right;">
+          </i>
+          <i class="rem-icon fa fa-trash" aria-hidden="true" data-toggle="modal" style="float: right;">
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
