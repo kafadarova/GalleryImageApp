@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup,
         FormBuilder} from '@angular/forms';
 //import * as $ from 'jquery';
-import { CommonServicesService } from '../../common-services.service';
+import { ApiService } from '../../api.service';
 
 @Component({
   selector: 'app-gallery',
@@ -14,7 +14,7 @@ export class GalleryComponent implements OnInit {
  imageNm: string;
  images = [];
 
-  constructor(private svcs: CommonServicesService) { }
+  constructor(private svcs: ApiService) { }
 
   ngOnInit() {
     //this.createForm();
