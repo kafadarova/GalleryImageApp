@@ -3,7 +3,7 @@
     <!-- Search form -->
     <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
       <i class="fa fa-search" aria-hidden="true"></i>
-      <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by description" aria-label="Search">
+      <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by description" aria-label="Search" (keyup)="onKey($event)">
     </form>
   </div>
   <div class="row mx-auto">

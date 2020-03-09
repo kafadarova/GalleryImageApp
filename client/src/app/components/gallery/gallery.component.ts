@@ -10,24 +10,14 @@ import { ApiService } from '../../api.service';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
- title = 'app';
- imageNm: string;
  images: {};
 
-  constructor(private svcs: ApiService) { }
+  constructor(private svcs: ApiService) {}
 
   ngOnInit() {
     //this.createForm();
     this.loadImages();
   }
-
-  // createForm() {
-  //   this.myForm = this.fb.group({
-  //     imageName: '',
-  //     imageAvatar: null
-  //   });
-  // }
-
   loadImages() {
     this.svcs.getImages().subscribe(images => {
       this.images = images;
@@ -39,4 +29,9 @@ export class GalleryComponent implements OnInit {
     );
    }
 
+   onKey(event: any) {
+     const value = event.target.value;
+     for (const img in this.images) {
+     }
+   }
 }
