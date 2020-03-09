@@ -25,11 +25,11 @@ export class ApiService {
     return result;
   }
 
-  deleteImage(params) {
-    const url =`${this.apiUrl}api/images/${params}`;
+  deleteImage(uid) {
+    const url =`${this.apiUrl}api/images/${uid}`;
     const result = this.http.delete(url);
-    console.log(result);
-
+    console.log("uid",uid);
+    console.log("result",result);
     return result;
   }
 }

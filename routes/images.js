@@ -73,7 +73,7 @@ router.delete('/:uid', async (req, res) => {
     const s3Response = await deleteImage(uid, res);
     if (s3Response.success) {
       const image = await Image.findOneAndRemove({ uid });
-      res.status(200).send('Image was deleted');
+      res.status(200).send(image);
     } else {
       res.status(404).send('Image not found');
     }

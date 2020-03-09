@@ -12,14 +12,14 @@ import { ApiService } from '../../api.service';
 export class GalleryComponent implements OnInit {
  images: {};
 
-  constructor(private svcs: ApiService) {}
+  constructor(private apis: ApiService) {}
 
   ngOnInit() {
     //this.createForm();
     this.loadImages();
   }
   loadImages() {
-    this.svcs.getImages().subscribe(images => {
+    this.apis.getImages().subscribe(images => {
       this.images = images;
     },
     err => {
@@ -30,14 +30,30 @@ export class GalleryComponent implements OnInit {
    }
 
    onKey(event: any) {
-     const value = event.target.value;
-     for (const img in this.images) {
-     }
-   }
-   
+  const value = event.target.value;
+  // const filtered = [];
+
+  // for (const img in this.images) {
+  //   console.log(this.images[img].description);
+  //   if (this.images[img].description.indexOf(value) >- 1) {
+  //     filtered.push(img);
+  //   }
+  // }
+
+  // const filtered = this.images.filter(img => {
+  //   return img.description.indexOf(value) >- 1;
+  //   });
+  //
+  //   if (value=== "") {
+  //   this.loadImages();
+  //   }
+  //
+  //   this.images = filtered;
+  }
+
    onDeleteClick(image){
-     const params = image.uid;
-     this.svcs.deleteImage(params).subscribe(() => {
+     const {uid} = image;
+     this.apis.deleteImage(uid).subscribe(() => {
         this.loadImages();
     });
    }
