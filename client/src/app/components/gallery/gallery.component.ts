@@ -12,7 +12,7 @@ import { ApiService } from '../../api.service';
 export class GalleryComponent implements OnInit {
  title = 'app';
  imageNm: string;
- images = [];
+ images: {};
 
   constructor(private svcs: ApiService) { }
 
@@ -30,8 +30,7 @@ export class GalleryComponent implements OnInit {
 
   loadImages() {
     this.svcs.getImages().subscribe(images => {
-      console.log(images);
-
+      this.images = images;
     },
     err => {
       console.log(err);

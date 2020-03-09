@@ -8,7 +8,8 @@ import { map } from 'rxjs/operators';
 
 export class ApiService {
   apiUrl: string = 'http://localhost:8080/';
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+
   constructor(private http: HttpClient) { }
   // uploadImage(params) {
   //   const headers = new Headers();
@@ -20,9 +21,9 @@ export class ApiService {
   // }
   getImages() {
     const url = `${this.apiUrl}api/images`;
-    const result = this.http.get(url)
-    .pipe(map((res:Response) => res.json()));
+    const result = this.http.get(url);
     return result;
+
   }
   // deleteImage(params) {
   //   const headers = new Headers();
