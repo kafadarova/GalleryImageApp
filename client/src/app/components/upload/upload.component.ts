@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpResponse, HttpEventType } from '@angular/common/http';
+import { ApiService } from '../../api.service';
+
 
 @Component({
   selector: 'app-upload',
@@ -6,10 +9,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
-
-  constructor() { }
+    selectedFiles: FileList;
+    currentFileUpload: File;
+    progress: { percentage: number } = { percentage: 0 };
+  constructor(private apis: ApiService) { }
 
   ngOnInit(): void {
   }
+  selectFile(event) {
+   this.selectedFiles = event.target.files;
+ }
+
+ upload() {
+   this.progress.percentage = 0;
+
+   this.currentFileUpload = this.selectedFiles.item(0);
+   this.apis.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+     if (event.type === HttpEventType.UploadProgress) {
+       this.progress.percentage = Math.round(100 * event.loaded / event.total);
+     } else if (event instanceof HttpResponse) {
+       console.log('File is completely uploaded!');
+     }
+   });
+
+   this.selectedFiles = undefined;
+ }
 
 }

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup,
-        FormBuilder} from '@angular/forms';
 //import * as $ from 'jquery';
 import { ApiService } from '../../api.service';
 
@@ -18,6 +16,7 @@ export class GalleryComponent implements OnInit {
     //this.createForm();
     this.loadImages();
   }
+  
   loadImages() {
     this.apis.getImages().subscribe(images => {
       this.images = images;
@@ -30,26 +29,22 @@ export class GalleryComponent implements OnInit {
    }
 
    onKey(event: any) {
-  const value = event.target.value;
-  // const filtered = [];
+     const value = event.target.value;
+     const filtered = [];
 
-  // for (const img in this.images) {
-  //   console.log(this.images[img].description);
-  //   if (this.images[img].description.indexOf(value) >- 1) {
-  //     filtered.push(img);
-  //   }
-  // }
+     for (const img in this.images) {
+       const desc = this.images[img].description.toLowerCase();
+       if (desc.indexOf(value.toLowerCase()) >- 1) {
+         filtered.push(this.images[img]);
+       }
+     }
 
-  // const filtered = this.images.filter(img => {
-  //   return img.description.indexOf(value) >- 1;
-  //   });
-  //
-  //   if (value=== "") {
-  //   this.loadImages();
-  //   }
-  //
-  //   this.images = filtered;
-  }
+     if (value === "") {
+       this.loadImages();
+     }
+
+     this.images = filtered;
+   }
 
    onDeleteClick(image){
      const {uid} = image;
