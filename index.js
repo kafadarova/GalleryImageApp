@@ -3,13 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const swaggerUi = require('swagger-ui-express');
 
 const { initDB } = require('./config/db');
 
 // Routes
 const images = require('./routes/images');
-const swaggerDocument = require('./services/swagger/swagger.json');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -28,7 +26,6 @@ app.use(bodyParser.json({ limit: '5mb' }));
   await initDB();
 })();
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { explorer: true }));
 app.use('/api/images', images);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
