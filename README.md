@@ -30,7 +30,7 @@ The application offers the following functionalities:
 
   | Endpoint        | Method           | Description  |
   | ------------- |:-------------:| -----|
-  | /api/api/images | GET | Fetch all images |
-  | /api/api/images | POST | Upload new image |
-  | /api/api/images/:uid | PUT | Edit an image |
-  | /api/api/images/:uid | DELETE | Delete an image |
+  | /api/images | GET | Fetch all images |
+  | /api/images/upload | POST | Upload new image |
+  | /api/images/:uid | PUT | Edit an image |
+  | /api/images/:uid | DELETE | Delete an image |

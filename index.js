@@ -28,7 +28,6 @@ app.use(bodyParser.json({ limit: '5mb' }));
 
 app.use('/api/images', images);
 
-
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 module.exports = app;
