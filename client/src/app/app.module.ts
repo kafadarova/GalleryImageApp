@@ -7,11 +7,13 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ModalModule } from './_modal';
+import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 
-/* Angular 8 http service */
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-/* Angular 8 CRUD services */
 import { ApiService } from './api.service';
 
 @NgModule({
@@ -19,8 +21,7 @@ import { ApiService } from './api.service';
     AppComponent,
     GalleryComponent,
     UploadComponent,
-    NavbarComponent
-
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,8 +29,10 @@ import { ApiService } from './api.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule,
-    ModalModule
+    ModalModule,
+    FileUploadModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

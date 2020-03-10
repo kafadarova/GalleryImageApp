@@ -1,52 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../api.service';
+import { FileUploader } from 'ng2-file-upload';
+import { ToastrService } from 'ngx-toastr';
 
+const URL = 'http://localhost:8080/api/images/upload';
 
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
+
 export class UploadComponent implements OnInit {
-fileData: File = null;
-previewUrl:any = null;
-fileUploadProgress: string = null;
-uploadedFilePath: string = null;
+  imageDesc: string;
 
-  constructor(private apis: ApiService) {}
+  public uploader: FileUploader = new FileUploader({
+    url: URL,
+    itemAlias: 'image'
+  });
 
-  fileProgress(fileInput: any) {
-        this.fileData = <File>fileInput.target.files[0];
-        this.preview();
-  }
+  constructor(private toastr: ToastrService) { }
 
   ngOnInit() {
+
+    this.uploader.onAfterAddingFile = (file) => {
+      file.withCredentials = false;
+    };
+    this.uploader.onCompleteItem = (item: any, status: any) => {
+      this.toastr.success('File successfully uploaded!');
+    };
   }
-
-  preview() {
-    // Show preview
-    var mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
-
-    var reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-    reader.onload = (_event) => {
-      this.previewUrl = reader.result;
-    }
-}
-
-onSubmit() {
-    const formData = new FormData();
-      formData.append('image', this.fileData);
-      console.log("formdata",formData);
-
-      this.apis.uploadImage(formData).subscribe(() => {
-          console.log("success");
-          // console.log(res);
-          // this.uploadedFilePath = res.data.filePath;
-          // alert('SUCCESS !!');
-        })
-}
 }
