@@ -7,16 +7,22 @@
     </form>
   </div>
   <div class="row mx-auto">
+    <jw-modal id="custom-modal-1">
+       <input type="text" [(ngModel)]="imageDesc" />
+       <button (click)="updateImage('custom-modal-1');">Save</button>
+       <button (click)="closeModal('custom-modal-1');">Close</button>
+    </jw-modal>
     <div class="col-xl-4 col-md-6 d-inline-flex align-items-stretch carddiv" *ngFor="let image of images">
       <div class="card">
         <div class="card-body">
           <img class="img-fluid" data-src="{{image.path}}" alt="{{image.description}}">
           <span class="card-title">{{image.description}}</span>
-          <i class="rem-icon fa fa-edit fa-lg" aria-hidden="true" style=" float: right;">
+          <i class="rem-icon fa fa-edit fa-lg" aria-hidden="true" (click)="oneEditClick(image)" style=" float: right;">
           </i>
           <i class="rem-icon fa fa-trash fa-lg" aria-hidden="true" (click)="onDeleteClick(image)" style="float: right;">
           </i>
         </div>
       </div>
+
     </div>
   </div>

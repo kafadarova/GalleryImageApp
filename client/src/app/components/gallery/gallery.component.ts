@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import * as $ from 'jquery';
 import { ApiService } from '../../api.service';
+import { ModalService } from '../../_modal';
 
 @Component({
   selector: 'app-gallery',
@@ -9,14 +10,17 @@ import { ApiService } from '../../api.service';
 })
 export class GalleryComponent implements OnInit {
  images: {};
+ imageDesc: string;
+ currentImage: {};
 
-  constructor(private apis: ApiService) {}
+  constructor(private apis: ApiService, private modalService: ModalService) {}
 
   ngOnInit() {
     //this.createForm();
     this.loadImages();
+    // this.imageDesc = 'This text can be updated in modal 1';
   }
-  
+
   loadImages() {
     this.apis.getImages().subscribe(images => {
       this.images = images;
@@ -44,6 +48,27 @@ export class GalleryComponent implements OnInit {
      }
 
      this.images = filtered;
+   }
+
+   updateImage(id) {
+     this.closeModal(id);
+     this.apis.updateImage(this.currentImage, this.imageDesc).subscribe(() => {
+        this.loadImages();
+    });;
+   }
+
+   openModal(id: string) {
+      this.modalService.open(id);
+   }
+
+   closeModal(id: string) {
+      this.modalService.close(id);
+    }
+
+   oneEditClick(image) {
+     this.openModal('custom-modal-1');
+     this.currentImage = image;
+     this.imageDesc = image.description;
    }
 
    onDeleteClick(image){

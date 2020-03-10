@@ -18,9 +18,19 @@ export class ApiService {
     const result = this.http.post(url, {headers: headers});
     return result;
   }
+
   getImages() {
     const url = `${this.apiUrl}api/images`;
     const result = this.http.get(url);
+    return result;
+  }
+
+  updateImage(image, desc) {
+    const data = {
+      description: desc
+    };
+    const url =`${this.apiUrl}api/images/${image.uid}`;
+    const result = this.http.put(url, data);
     return result;
   }
 

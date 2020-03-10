@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ModalModule } from './_modal';
 
 /* Angular 8 http service */
 import { HttpClientModule } from '@angular/common/http';
@@ -19,6 +20,7 @@ import { ApiService } from './api.service';
     GalleryComponent,
     UploadComponent,
     NavbarComponent
+
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,8 @@ import { ApiService } from './api.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
+    ModalModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
