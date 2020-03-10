@@ -24,6 +24,7 @@ The application offers the following functionalities:
   5. In **root** directory run `npm run dev`
   6. The app should be running on `localhost:4200`
 
+  ![architecture](assets/architecture.png)
   ------------------------------------  
 ## List of supported endpoints
 
