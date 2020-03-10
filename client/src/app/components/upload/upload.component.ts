@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse, HttpEventType } from '@angular/common/http';
+import {FormGroup,
+        FormsModule,
+        ReactiveFormsModule,
+        FormBuilder} from '@angular/forms';
 import { ApiService } from '../../api.service';
 
 
@@ -9,30 +12,50 @@ import { ApiService } from '../../api.service';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
-    selectedFiles: FileList;
-    currentFileUpload: File;
-    progress: { percentage: number } = { percentage: 0 };
-  constructor(private apis: ApiService) { }
+  myForm: FormGroup;
+  imageNm: string;
 
-  ngOnInit(): void {
-  }
-  selectFile(event) {
-   this.selectedFiles = event.target.files;
+  constructor(private fb: FormBuilder,private apis: ApiService) {}
+
+  ngOnInit() {
+   this.createForm();
  }
-
- upload() {
-   this.progress.percentage = 0;
-
-   this.currentFileUpload = this.selectedFiles.item(0);
-   this.apis.pushFileToStorage(this.currentFileUpload).subscribe(event => {
-     if (event.type === HttpEventType.UploadProgress) {
-       this.progress.percentage = Math.round(100 * event.loaded / event.total);
-     } else if (event instanceof HttpResponse) {
-       console.log('File is completely uploaded!');
-     }
+ createForm() {
+   this.myForm = this.fb.group({
+     imageName: '',
+     imageAvatar: null
    });
-
-   this.selectedFiles = undefined;
  }
-
+ onUploadBtnClick() {
+    $('#imageFile').click();
+  }
+  onFileChange(event) {
+    const reader = new FileReader();
+    $('#upload-btn').attr('style', 'visibility: visible');
+    if (event.target.files &&
+      event.target.files.length > 0) {
+      const file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        $('#preview')
+        .attr('src', URL.createObjectURL(event.target.files[0]));
+        this.myForm.get('imageAvatar').setValue({
+          filename: file.name,
+          filetype: file.type,
+          //value: reader.result.split(',')[1]
+        });
+      };
+    }
+  }
+  onSubmit() {
+    const formModel = this.myForm.value;
+    const params = {
+      imageName: this.myForm.get('imageNm'),
+      imageAvatar: this.myForm.get('imageAvatar'),
+      maintDt: Date.now()
+    };
+    this.apis.uploadImage(formModel).subscribe(data => {
+      console.log(data);
+    });
+  }
 }

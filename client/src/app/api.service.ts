@@ -11,7 +11,8 @@ export class ApiService {
   headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
   constructor(private http: HttpClient) { }
-  uploadImage() {
+
+  uploadImage(file: File) {
     const headers = new Headers();
     const url =  `${this.apiUrl}api/upload`;
     const result = this.http.post(url, {headers: headers});
