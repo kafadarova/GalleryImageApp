@@ -1,6 +1,6 @@
 # gallery-app
 
-Image gallery application is a responsive app built using Angular 8 & NodeJS & MongoDB. It displays a list of images, uploads them to S3 and stores their references in MongoDB.
+Image gallery application is a responsive app built using Angular 8, NodeJS & MongoDB. It displays a list of images, uploads them to S3 and stores their references in MongoDB.
 
 ## Functionality  
 

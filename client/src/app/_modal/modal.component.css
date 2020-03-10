@@ -15,7 +15,8 @@ jw-modal {
 .jw-modal-body {
   padding: 20px;
   background: #fff;
-  margin: 40px;
+  margin: 40px auto;
+  max-width: 400px;
 }
 
 .jw-modal-background {
