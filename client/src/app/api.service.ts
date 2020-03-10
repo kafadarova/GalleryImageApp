@@ -11,25 +11,34 @@ export class ApiService {
   headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
   constructor(private http: HttpClient) { }
-  // uploadImage(params) {
-  //   const headers = new Headers();
-  //   const url = this.apiUrl + 'images/upload';
-  //   console.log(params);
-  //   const result = this.http.post(url, params, {headers: headers})
-  //   .map(res => res.json());
-  //   return result;
-  // }
+
+  uploadImage(file: File) {
+    console.log(file);
+
+    const headers = new Headers();
+    const url =  `${this.apiUrl}api/images/upload`;
+    const result = this.http.post(url, {headers: headers});
+    return result;
+  }
+
   getImages() {
     const url = `${this.apiUrl}api/images`;
     const result = this.http.get(url);
     return result;
-
   }
-  // deleteImage(params) {
-  //   const headers = new Headers();
-  //   const url = this.apiUrl + 'images/deleteImage';
-  //   const result = this.http.post(url, params, {headers: headers})
-  //   .map(res => res.json());
-  //   return result;
-  // }
+
+  updateImage(image, desc) {
+    const data = {
+      description: desc
+    };
+    const url =`${this.apiUrl}api/images/${image.uid}`;
+    const result = this.http.put(url, data);
+    return result;
+  }
+
+  deleteImage(uid) {
+    const url =`${this.apiUrl}api/images/${uid}`;
+    const result = this.http.delete(url);
+    return result;
+  }
 }

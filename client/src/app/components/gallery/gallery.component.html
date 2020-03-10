@@ -3,20 +3,30 @@
     <!-- Search form -->
     <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
       <i class="fa fa-search" aria-hidden="true"></i>
-      <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by description" aria-label="Search">
+      <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by description" aria-label="Search" (keyup)="onKey($event)">
     </form>
   </div>
   <div class="row mx-auto">
+    <jw-modal id="custom-modal-1">
+      <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="imageDesc" />
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeModal('custom-modal-1');">Close</button>
+        <button class="btn btn-primary" (click)="updateImage('custom-modal-1');">Save</button>
+      </div>
+    </jw-modal>
     <div class="col-xl-4 col-md-6 d-inline-flex align-items-stretch carddiv" *ngFor="let image of images">
       <div class="card">
         <div class="card-body">
-          <img class="img-fluid" data-src="{{this.image.path}}" alt="{{this.image.description}}">
-          <span class="card-title">{{this.image.description}}</span>
-          <i class="rem-icon fa fa-edit" aria-hidden="true" data-toggle="modal" style="float: right;">
+          <img class="img-fluid" data-src="{{image.path}}" alt="{{image.description}}">
+          <span class="card-title">{{image.description}}</span>
+          <i class="rem-icon fa fa-edit fa-lg" aria-hidden="true" (click)="oneEditClick(image)" style=" float: right;">
           </i>
-          <i class="rem-icon fa fa-trash" aria-hidden="true" data-toggle="modal" style="float: right;">
+          <i class="rem-icon fa fa-trash fa-lg" aria-hidden="true" (click)="onDeleteClick(image)" style="float: right;">
           </i>
         </div>
       </div>
+
     </div>
   </div>

@@ -1,1 +1,10 @@
-<p>upload works!</p>
+<div class="jumbotron" align="center">
+  <h2>Image Upload</h2>
+  <div class="file-upload">
+    <input type="text" [(ngModel)]="imageDesc" name="imageName" placeholder="Enter Image Name">
+    <input type="file" name="image" ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg" />
+    <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+      Upload
+    </button>
+  </div>
+</div>

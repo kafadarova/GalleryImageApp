@@ -9,7 +9,7 @@ const ImageSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
+    required: false,
   },
   path: {
     type: String,
