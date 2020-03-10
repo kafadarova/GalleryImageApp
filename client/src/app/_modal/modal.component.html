@@ -1,6 +1,12 @@
 ﻿<div class="jw-modal">
-    <div class="jw-modal-body">
-        <ng-content></ng-content>
+  <div class="jw-modal-body">
+    <div class="modal-header">
+      <h5 class="modal-title">Change image description</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+        <span aria-hidden=" true">&times;</span>
+      </button>
     </div>
+    <ng-content></ng-content>
+  </div>
 </div>
 <div class="jw-modal-background"></div>

@@ -13,8 +13,10 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   uploadImage(file: File) {
+    console.log(file);
+
     const headers = new Headers();
-    const url =  `${this.apiUrl}api/upload`;
+    const url =  `${this.apiUrl}api/images/upload`;
     const result = this.http.post(url, {headers: headers});
     return result;
   }
