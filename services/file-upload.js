@@ -18,9 +18,6 @@ aws.config.update({
 // S3 Instance
 const s3 = new aws.S3();
 
-// Generate unique image id
-const imageUid = uid();
-
 // Delete image
 const deleteImage = async (uid, res) => {
   const params = {
@@ -49,7 +46,7 @@ const uploadImage = multer({
       cb(null, { fieldName: file.fieldname });
     },
     key(req, file, cb) {
-      cb(null, imageUid);
+      cb(null, uid());
     },
   }),
 });
