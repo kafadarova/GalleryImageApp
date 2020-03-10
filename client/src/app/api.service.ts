@@ -12,15 +12,6 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  uploadImage(file: File) {
-    console.log(file);
-
-    const headers = new Headers();
-    const url =  `${this.apiUrl}api/images/upload`;
-    const result = this.http.post(url, {headers: headers});
-    return result;
-  }
-
   getImages() {
     const url = `${this.apiUrl}api/images`;
     const result = this.http.get(url);
@@ -31,13 +22,13 @@ export class ApiService {
     const data = {
       description: desc
     };
-    const url =`${this.apiUrl}api/images/${image.uid}`;
+    const url = `${this.apiUrl}api/images/${image.uid}`;
     const result = this.http.put(url, data);
     return result;
   }
 
   deleteImage(uid) {
-    const url =`${this.apiUrl}api/images/${uid}`;
+    const url = `${this.apiUrl}api/images/${uid}`;
     const result = this.http.delete(url);
     return result;
   }

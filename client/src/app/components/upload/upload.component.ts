@@ -21,7 +21,6 @@ export class UploadComponent implements OnInit {
   constructor(private toastr: ToastrService) { }
 
   ngOnInit() {
-
     this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false;
     };
